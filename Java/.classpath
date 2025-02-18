@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="3 - Software design patterns/src/main/java"/>
+	<classpathentry kind="src" path="4.1 - Unit testing/src/main/java"/>
+	<classpathentry kind="src" path="4.1 - Unit testing/src/test/java"/>
+	<classpathentry kind="src" path="4.2 - Readable tests/src/main/java"/>
+	<classpathentry kind="src" path="4.2 - Readable tests/src/test/java"/>
+	<classpathentry kind="src" path="4.3 - Test coverage/src/main/java"/>
+	<classpathentry kind="src" path="4.3 - Test coverage/src/test/java"/>
+	<classpathentry kind="src" path="4.5 - Test doubles/src/main/java"/>
+	<classpathentry kind="src" path="6.1 - Test driven development (TDD)/src/main/java"/>
+	<classpathentry kind="src" path="6.1 - Test driven development (TDD)/src/test/java"/>
+	<classpathentry kind="src" path="6.2 - Behaviour driven development (BDD)/src/main/java"/>
+	<classpathentry kind="src" path="6.2 - Behaviour driven development (BDD)/src/test/java"/>
+	<classpathentry kind="src" path="7 - Code smells/src/main/java"/>
+	<classpathentry kind="src" path="9 - Continuous integration with Jenkins/calculator-jenkins/src/main/java"/>
+	<classpathentry kind="src" path="9 - Continuous integration with Jenkins/calculator-jenkins/src/test/java"/>
+	<classpathentry kind="output" path="4.1 - Unit testing/target/classes"/>
+</classpath>
