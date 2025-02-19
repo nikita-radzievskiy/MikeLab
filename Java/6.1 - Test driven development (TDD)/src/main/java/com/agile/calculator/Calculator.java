@@ -1,47 +1,35 @@
 package com.agile.calculator;
 
-import com.agile.utils.Utils;
-
 public class Calculator {
 
-	public int divide(String n1) {
-		int result = -9999;		
-		String separator = ",";
-		// if doesn't contain a comma call this
-		if(!n1.contains(","))
-			separator = String.format("%s", Utils.validSeperator(n1));    // slows down test
-		String[] numbers = n1.split(separator);
-		for(String number : numbers) {
-			if(!Utils.isNumeric(number)) {  
-				return result;
-			}
+	public int add(String numbers) {
+		if (numbers.isEmpty()) {
+			return 0;
 		}
-		result = Utils.toNumber(numbers[0]) / Utils.toNumber(numbers[1]);
-		return result;
-	}
-	
-	public int multiply(String n1) {
-		int result = -9999;		
-		String[] numbers = n1.split(",");	
-		for(String number : numbers) {
-			if(!Utils.isNumeric(number)) {  // check number is valid
-				return result;
+
+		String[] splitNumbers = numbers.split("[,\n]");
+		int sum = 0;
+		StringBuilder negatives = new StringBuilder();
+
+		for (String num : splitNumbers) {
+			int number = Integer.parseInt(num.trim());
+
+			// Check for negative numbers
+			if (number < 0) {
+				if (negatives.length() > 0) {
+					negatives.append(", ");
+				}
+				negatives.append(number);
 			}
+
+			sum += number;
 		}
-		result = Utils.toNumber(numbers[0]) * Utils.toNumber(numbers[1]);
-		return result;
-	}
-	
-	public int subtract(String n1) {
-		int result = -9999;		
-	
-		String[] numbers = n1.split(",");
-		for(String number : numbers) {
-			if(!Utils.isNumeric(number)) {  // check number is valid
-				return result;
-			}
+
+		// If negatives exist, throw exception
+		if (negatives.length() > 0) {
+			throw new IllegalArgumentException("Negative numbers not allowed: " + negatives);
 		}
-		result = Utils.toNumber(numbers[0]) - Utils.toNumber(numbers[1]);
-		return result;
+
+		return sum;
 	}
 }
