@@ -1,45 +1,46 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace QAShopping
 {
+    // Introduce a strongly typed Item class instead of using dynamic objects
+    public class Item
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public bool HasVat { get; set; }
+
+        public double GetFinalPrice()
+        {
+            return HasVat ? Math.Round(Price * 1.2, 2) : Price;
+        }
+    }
+
     public static class Basket
     {
-        public static string PrintBasket(dynamic basket)
+        public static string PrintBasket(List<Item> basket)
         {
-            string basketOutput = "Item Name\t\t\tPrice\n";
+            // Use StringBuilder for efficient string concatenation
+            StringBuilder basketOutput = new StringBuilder();
+            basketOutput.AppendLine("Item Name\t\t\tPrice\n");
+
+
             double total = 0;
-            foreach (dynamic item in basket)
+
+            foreach (var item in basket)
             {
-                foreach (var property in item.GetType().GetProperties())
-                {
-                    switch (property.Name)
-                    {
-                        case "_name":
-                            basketOutput += $"{property.GetValue(item)}";
-                            basketOutput += property.GetValue(item).Length < 16 ? "\t\t\t" : "\t\t";
-                            break;
-                        case "_price":
-                            double price = property.GetValue(item);
-                            bool vat = item.GetType().GetProperty("_vat").GetValue(item);
-                            double priceToAdd = vat ? Math.Round(price * 1.2, 2) : price;
-                            basketOutput += $"{priceToAdd:0.00}\n";
-                            total += priceToAdd;
-                            break;
-                        case "_id":
-                        case "_vat":
-                        default:
-                            break;
-                    }
-                }
+                string tabSpacing = item.Name.Length < 16 ? "\t\t\t" : "\t\t";
+                double finalPrice = item.GetFinalPrice();
+
+                basketOutput.AppendFormat("{0}{1}{2:0.00}\n", item.Name, tabSpacing, finalPrice);
+                total += finalPrice;
             }
-            basketOutput += $"\n\t\t\tTotal\t£{total:0.00}";
-            return basketOutput;
+
+            basketOutput.AppendFormat("\n\t\t\tTotal\t£{0:0.00}", total);
+
+            return basketOutput.ToString();
         }
     }
 }
