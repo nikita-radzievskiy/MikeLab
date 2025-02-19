@@ -25,4 +25,15 @@ public class CalculatorStep {
 	public void testResult(int output) {
 		 Assert.assertEquals(output, myCal.getresult());
 	}
+
+	@When("I subtract $number1 from $number2")
+	public void SubtractCal(int x, int y) {
+		myCal.subtractTwoNumbers(x, y);
+	}
+
+	@When("I multiply $number1 and $number2")
+	public void MultiplyCal(int x, int y) {
+		myCal.multiplyTwoNumbers(x, y);
+	}
+
 }

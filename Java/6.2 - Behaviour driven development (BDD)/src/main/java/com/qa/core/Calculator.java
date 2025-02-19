@@ -14,4 +14,14 @@ public class Calculator {
 	public int getresult() {
 		return this.answer;
 	}
+
+	public void subtractTwoNumbers(int x, int y) {
+		this.answer = y - x; // Correcting the order
+	}
+
+
+	public void multiplyTwoNumbers(int x, int y) {
+		this.answer = x * y;
+	}
+
 }
